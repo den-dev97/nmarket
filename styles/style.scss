@@ -1,0 +1,364 @@
+/*
+* @author Khaustov.D
+* main styles
+*/
+
+//normalize
+* {
+  margin: 0;
+  padding: 0;
+}
+
+//colors
+$gray: #989691;
+$white: #ffffff;
+$green: #64B851;
+$red: #EB4B51;
+$blue: #2794DB;
+$yellow: #FAC62D;
+$hover-yellow: #F0B505;
+$active-yellow: #E1AB08;
+$cross-bg-hover: #F5F4F2;
+$cross-bg-active: #E7E4DE;
+$light-red: #FAF0F0;
+$light-green: #F2FAF0;
+$light-gray: #F0EEEB;
+$night-gray: #383736;
+
+//permission
+$low-screen: 1105px;
+$tablet: 990px;
+$pre-mobile: 775px;
+$mobile: 535px;
+
+//styles
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #E5E5E5;
+  color: $night-gray;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.container {
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+
+  &:target {
+    visibility: visible;
+    opacity: 1;
+
+    .pop-up {
+      top: 50%;
+    }
+  }
+}
+
+.pop-up {
+  background-color: $white;
+  width: max-content;
+  padding: 24px 32px 24px 69.8px;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  transform: translate(-50%, -50%);
+  transition: 0.5s;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+
+
+  &__description {
+    display: flex;
+    padding-right: 187px;
+  }
+
+  &__price {
+    padding-left: 31px;
+    border-left: 1px solid $light-gray;
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 36px;
+    font-feature-settings: 'liga' off;
+  }
+
+  &__description-subtitle {
+    line-height: 16px;
+  }
+
+  &__description-amount {
+    font-weight: 500;
+  }
+
+  .gray {
+    font-size: 12px;
+    line-height: 16px;
+    color: $gray;
+  }
+
+  &__description-img {
+    width: 86.39px;
+    height: 160.32px;
+    margin-right: 77.81px;
+  }
+
+  &__description-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px 50px;
+    grid-template-areas:
+    ". . ."
+    ". . .";
+    margin-bottom: 18px;
+  }
+
+  &__description-header {
+    margin-bottom: 8px;
+  }
+
+  .btn {
+    border-radius: 22px;
+    padding: 8px 16px;
+    display: flex;
+    text-decoration: none;
+    font-weight: 500;
+    width: fit-content;
+    font-size: 12px;
+    line-height: 16px;
+    height: fit-content;
+    white-space: nowrap;
+  }
+
+  &__description-green {
+    color: $green;
+    background-color: $light-green;
+    margin-right: 16px;
+
+
+    &:before {
+      content: url("../img/check-mark.svg");
+      margin-right: 9.71px;
+    }
+  }
+
+  &__description-red {
+    color: $red;
+    background-color: $light-red;
+
+    &:before {
+      content: url("../img/cross.svg");
+      position: relative;
+      top: 2px;
+      margin-right: 9.71px;
+    }
+  }
+
+  &__description-case {
+    display: flex;
+  }
+
+  &__price-cross {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    transition: .5s;
+
+    &:hover {
+      background-color: $cross-bg-hover;
+    }
+
+    &:active {
+      background-color: $cross-bg-active;
+    }
+  }
+
+  &__price-cross img {
+    max-width: fit-content;
+    height: fit-content;
+    opacity: .3;
+    transition: .5s;
+
+    &:hover {
+      opacity: .6;
+    }
+
+    &:active {
+      opacity: 1;
+    }
+  }
+
+  &__price-subtitle {
+    color: $gray;
+    font-size: 14px;
+    line-height: 20px;
+    margin-right: 26.56px;
+    margin-bottom: 2px;
+  }
+
+  &__price-date {
+    color: $blue;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  &__price-cost {
+    margin-bottom: 12px;
+  }
+
+  &__price-difference {
+    color: $red;
+    font-weight: 500;
+  }
+
+  &__price-buy {
+    display: flex;
+    width: 100%;
+    padding: 12px 0;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 6px;
+    background-color: $yellow;
+    justify-content: center;
+    font-weight: 500;
+    margin-top: 22px;
+    transition: .5s;
+
+    &:hover {
+      background-color: $hover-yellow;
+    }
+
+    &:active {
+      background-color: $active-yellow;
+    }
+
+    &:before {
+      content: url("../img/key.svg");
+      margin-right: 8px;
+    }
+  }
+
+  @media (max-width: 1250px) {
+    &__description {
+      padding-right: 20px;
+    }
+  }
+
+  @media (max-width: $low-screen) {
+    &__description-case {
+      display: block;
+    }
+
+    &__description-green {
+      margin-bottom: 8px;
+    }
+  }
+
+  @media (max-width: $tablet) {
+    &__description-box {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-areas:
+      ". ."
+      ". ."
+      ". .";
+    }
+  }
+
+  @media (max-width: 850px) {
+    padding: 20px;
+    display: block;
+
+    &__description {
+      padding: 0 0 20px 0;
+    }
+
+    &__description-case {
+      display: flex;
+    }
+
+    &__description-container {
+      width: 160px;
+    }
+
+    &__description-img {
+      margin: 0 auto;
+      display: block;
+    }
+
+    &__price {
+      padding: 20px 0 0 0;
+      border-left: none;
+      border-top: 1px solid $light-gray;
+    }
+  }
+
+  @media (max-width: 680px) {
+    &__description-case {
+      display: block;
+    }
+  }
+
+  @media (max-width: $mobile) {
+    padding: 20px;
+
+    &__description-case {
+      display: block;
+    }
+
+    &__description {
+      display: block;
+      padding-bottom: 20px;
+    }
+
+    &__price {
+      padding-top: 20px;
+    }
+
+    &__description-container {
+      width: auto;
+      text-align: center;
+      margin-bottom: 23px;
+    }
+
+    &__description-header {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.button {
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
